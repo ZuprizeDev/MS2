@@ -1,0 +1,19 @@
+local Items = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Inventory.Frame.Container.Pets.Content.Frame.Items
+
+function deletepet(PetID)
+    local args = {
+        [1] = {
+            [1] = PetID
+        }
+    }
+
+    game:GetService("ReplicatedStorage").Events.MultiDeletePets:FireServer(unpack(args))
+end
+
+for i,v in pairs(Items:GetChildren()) do
+    if v:FindFirstChild("Frame") then
+        if v.Frame.ItemName.Text == _G.PetName then
+            deletepet(v.Name)
+        end
+    end
+end
